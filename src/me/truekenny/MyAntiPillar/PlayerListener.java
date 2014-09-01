@@ -54,11 +54,11 @@ public class PlayerListener implements Listener {
 
         int countBlock = 0;
 
-        int halfSize = 2;
+        int halfSize = 1;
 
         for (int x = location.getBlockX() - halfSize; x <= location.getBlockX() + halfSize; x++) {
             for (int z = location.getBlockZ() - halfSize; z <= location.getBlockZ() + halfSize; z++) {
-                for (int y = location.getBlockY() - 1 - halfSize * 2; y <= location.getBlockY() - 1; y++) {
+                for (int y = location.getBlockY() - 1 - halfSize * 2; y <= location.getBlockY() + 1 + halfSize * 2; y++) {
                     testLocation = new Location(world, x, y, z);
                     testBlock = testLocation.getBlock();
 
@@ -67,7 +67,7 @@ public class PlayerListener implements Listener {
                     if (!testBlock.getType().toString().equals("AIR")) {
                         countBlock++;
 
-                        if (countBlock >= plugin.minimumQuantityOf125) {
+                        if (countBlock >= plugin.minimumQuantity) {
 
                             return;
                         }

@@ -14,7 +14,7 @@ public class MyAntiPillar extends JavaPlugin {
      */
     public FileConfiguration config;
 
-    public int minimumQuantityOf125;
+    public int minimumQuantity;
 
     public void onEnable() {
         defaultConfig();
@@ -52,13 +52,13 @@ public class MyAntiPillar extends JavaPlugin {
     public void defaultConfig() {
         config = getConfig();
 
-        config.addDefault("minimumQuantityOf125", 30);
+        config.addDefault("minimumQuantity", 8);
         config.addDefault("reason", "You can not put this block here, try to strengthen the sides of the base unit");
 
         config.options().copyDefaults(true);
         saveConfig();
 
-        minimumQuantityOf125 = config.getInt("minimumQuantityOf125");
+        minimumQuantity = config.getInt("minimumQuantity");
     }
 
 }
