@@ -25,6 +25,8 @@ public class PlayerListener implements Listener {
             new String[]{"DIRT", "SAND", "COBBLESTONE"}
     ));
 
+    private final double deltaY = 0.0001;
+
     public PlayerListener(MyAntiPillar instance) {
         plugin = instance;
         plugin.log("PlayerListener has been enabled!");
@@ -41,8 +43,6 @@ public class PlayerListener implements Listener {
         Block testBlock;
 
 
-        // plugin.log(player.getName() + " place " + block);
-
         if (!spamBlocks.contains(block.getType().toString())) {
 
             return;
@@ -53,39 +53,19 @@ public class PlayerListener implements Listener {
             return;
         }
 
-        int countBlock = 0;
+        if(Math.abs(player.getLocation().getY() - Math.round(player.getLocation().getY())) < deltaY) {
 
-        int halfSize = 2;
+            return;
+        }
 
-        for (int x = location.getBlockX() - 1; x <= location.getBlockX() + 1; x++) {
-            for (int z = location.getBlockZ() - 1; z <= location.getBlockZ() + 1; z++) {
-                for (int y = location.getBlockY() - 1 - halfSize * 2; y <= location.getBlockY() + 1 + halfSize * 2; y++) {
-                    testLocation = new Location(world, x, y, z);
-                    testBlock = testLocation.getBlock();
-
-                    // plugin.log("" + testBlock);
-                    // plugin.log(testBlock.getType().toString());
-
-                    if (!testBlock.getType().toString().equals("AIR")) {
-                        countBlock++;
-
-                        if (countBlock >= plugin.minimumQuantity) {
-
-                            return;
-                        }
-                    } // test !AIR
-                } // y
-            } // z
-        } // x
-
-        // player.sendMessage(ChatColor.RED + plugin.config.getString("reason"));
-        // event.setCancelled(true);
+        /*
         world.spawnEntity(player.getLocation(), EntityType.SILVERFISH);
         world.spawnEntity(player.getLocation(), EntityType.CREEPER);
         world.spawnEntity(player.getLocation(), EntityType.ZOMBIE);
+        */
+        event.setCancelled(true);
 
-
-        plugin.log(plugin.ANSI_RED + player.getName().toString() + " pillar blocked");
-    } // function
+        plugin.log(plugin.ANSI_RED + player.getName().toString() + " pillar blocked ("+ deltaY +")");
+    }
 }
 
