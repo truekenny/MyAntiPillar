@@ -24,11 +24,11 @@ public class MyAntiPillar extends JavaPlugin {
         pm.registerEvents(playerListener, this);
 
 
-        log("MyLineagePvpSystem has been enabled!");
+        log("MyAntiPillar has been enabled! +");
     }
 
     public void onDisable() {
-        log("MyLineagePvpSystem has been disabled.");
+        log("MyAntiPillar has been disabled.");
     }
 
     public static final String ANSI_RESET = "\u001B[0m";
@@ -52,8 +52,8 @@ public class MyAntiPillar extends JavaPlugin {
     public void defaultConfig() {
         config = getConfig();
 
-        config.addDefault("minimumQuantity", 8);
-        config.addDefault("reason", "You can not put this block here, try to strengthen the sides of the base unit");
+        config.addDefault("minimumQuantity", 7);
+        // config.addDefault("reason", "You can not put this block here, try to strengthen the sides of the base unit");
 
         config.options().copyDefaults(true);
         saveConfig();
